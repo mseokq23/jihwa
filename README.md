@@ -185,28 +185,28 @@ python3 src/display_picture.py example.jpg --simulate_display
 
 
 ------
-## 자동화(crontab하고 shellscript 두가지 방식으로 구현해야함.)
-
-매일 같은 시간에 이미지를 생성하고 자동으로 표시하려면 crontab을 활용할 수 있습니다.  
-아래 `cron_auto` 스크립트를 작성하고 `chmod +x`로 실행 가능하게 만든 후,  
-crontab에 등록하면 시스템이 자정마다 자동으로 이미지를 생성하고 출력합니다.
-
-*팁:* 여름철 고온 환경에서는 디스플레이가 일시적으로 변색될 수 있으므로  
-이미지 생성과 디스플레이 업데이트 사이에 `sleep 30` 같은 지연을 넣는 것도 고려해보세요.
+## 자동화
+(전원이 인가되면 자동으로 실행되도록 crontab하고 shellscript 두가지 방식으로 구현하고자 했으나, 개발단계에서는 간단하게 스크립트로 실행하는 것이 낫다고 판단)
 
 ```bash
-#!/bin/bash
-cd "/home/jihwa"
-python jihwa/src/generate_picture.py --width 480 --height 800 image_dir
-python jihwa/src/display_picture.py -r image_dir/output.png
+python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 실행
 ```
-당연히 코드가 있는 위치를 가리키도록 변경하세요.
 
-그런 다음 crontab에 항목을 추가했습니다(`crontab -e`로 crontab 파일 편집):
-`0 0 * * * /home/jihwa/bin/cron_auto`
-이 명령은 매일 자정에 `cron_auto`를 실행합니다.
+위의 자동실행코드는 무조건 jihwa 폴더에서 실행해야함.
+따라서 라즈베리파이의 전원을 인가한 뒤, 어플에서 자동화 명령어를 보내기 이전에 ` cd jihwa ` 명령어를 입력해주는 것이 필요.
 
-e-paper 디스플레이는 온도에 민감하다는 점에 유의하세요. 라즈베리 파이 제로의 환경에 따라 장시간 뜨거워질 수 있으며, 이로 인해 디스플레이에 변색이 발생할 수 있습니다. 이는 이미지 생성 후 디스플레이 업데이트를 지연시켜 방지할 수 있습니다.
+* i. python3 src/display_picture.py image_dir/output.png → 이미지를 출력
+ii. 5분(300초) 대기
+iii. python3 src/generate_picture.py image_dir → 이미지를 생성
+iv. 1시간(3600초) 대기
+v. python3 src/display_picture.py image_dir/output.png → 이미지를 출력
+vi. 5분 대기
+vii. python3 src/generate_picture.py image_dir → 이미지를 생성
+viii. 4~7 반복
+이미지 생성 실패 또는 output.png가 없으면 에러메시지 출력
+
+
+
 
 ## 프롬프트
 `prompts/` 디렉토리의 `.json` 파일은 다차원 배열 형식의 "프롬프트 조합 조각들"로 구성되어 있습니다.  
