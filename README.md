@@ -195,6 +195,8 @@ python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 �
 위의 자동실행코드는 무조건 jihwa 폴더에서 실행해야함.
 따라서 라즈베리파이의 전원을 인가한 뒤, 어플에서 자동화 명령어를 보내기 이전에 ` cd jihwa ` 명령어를 입력해주는 것이 필요.
 
+### 1. 동작 플로우
+
 * i. python3 src/display_picture.py image_dir/output.png → 이미지를 출력
 * ii. 5분(300초) 대기
 * iii. python3 src/generate_picture.py image_dir → 이미지를 생성
@@ -218,6 +220,27 @@ image_dir/
 ├── output50.png     # 50번째 이미지
 ├── output.png       # 최신 이미지 (호환용)
 └── image_counter.json  # 카운터 정보
+```
+
+### 2. 자동화 파일 구조
+` src/generate_picture.py ` → 기존 파일 유지 (디버깅용)
+` src/generate_picture_cycle.py `→ 새로 생성 (사이클용)
+
+### 3. 사용방법
+```bash
+# 사이클 모드 (자동 실행)
+python3 start_image_cycle.py
+
+# 수동 디버깅 (기존 방식)
+python3 src/generate_picture.py image_dir
+
+# 수동 사이클 테스트
+python3 src/generate_picture_cycle.py image_dir --output-number 1   # --output-number 1은 생성할 이미지의 순번을 지정하는 옵션, output1.png로 저장됨
+
+python3 src/generate_picture_cycle.py image_dir --output-number 5   # output5.png
+python3 src/generate_picture_cycle.py image_dir --output-number 25  # output25.png
+python3 src/generate_picture_cycle.py image_dir --output-number 50  # output50.png
+
 ```
 
 
