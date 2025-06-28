@@ -196,14 +196,14 @@ python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 �
 따라서 라즈베리파이의 전원을 인가한 뒤, 어플에서 자동화 명령어를 보내기 이전에 ` cd jihwa ` 명령어를 입력해주는 것이 필요.
 
 * i. python3 src/display_picture.py image_dir/output.png → 이미지를 출력
-ii. 5분(300초) 대기
-iii. python3 src/generate_picture.py image_dir → 이미지를 생성
-iv. 1시간(3600초) 대기
-v. python3 src/display_picture.py image_dir/output.png → 이미지를 출력
-vi. 5분 대기
-vii. python3 src/generate_picture.py image_dir → 이미지를 생성
-viii. 4~7 반복
-이미지 생성 실패 또는 output.png가 없으면 에러메시지 출력
+* ii. 5분(300초) 대기
+* iii. python3 src/generate_picture.py image_dir → 이미지를 생성
+* iv. 1시간(3600초) 대기
+* v. python3 src/display_picture.py image_dir/output.png → 이미지를 출력
+* vi. 5분 대기
+* vii. python3 src/generate_picture.py image_dir → 이미지를 생성
+* viii. 4~7 반복
+* 이미지 생성 실패 또는 output.png가 없으면 에러메시지 출력
 
 
 
