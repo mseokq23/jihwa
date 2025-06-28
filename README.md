@@ -185,7 +185,7 @@ python3 src/display_picture.py example.jpg --simulate_display
 
 
 ------
-## 자동화
+## 자동화(매 시간마다 이미지 생성과 출력이 자동으로 진행이 됨.)
 (전원이 인가되면 자동으로 실행되도록 crontab하고 shellscript 두가지 방식으로 구현하고자 했으나, 개발단계에서는 간단하게 스크립트로 실행하는 것이 낫다고 판단)
 
 ```bash
@@ -205,7 +205,9 @@ python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 �
 * vi. 5분 대기
 * vii. python3 src/generate_picture.py image_dir → 이미지를 생성
 * viii. 4~7 반복
-* 이미지 생성 실패 또는 output.png가 없으면 에러메시지 출력
+* 이미지 생성 실패 또는 output.png가 없으면 에러메시지 출력 => 없으면 새로 생성 먼저하는 것으로 로직 수정
+* 자동화를 통해 생성되는 ` output.png `는 output1, 2, 3 과 같이 숫자가 붙으며, json 파일로 해당 번호가 카운팅됨.
+* output51.png는 output1으로 덮어씌우기 진행됨.
 
   +) 수정:
   1. 안정성 향상: 환경변수 대신 명령줄 인수로 번호 전달
@@ -256,15 +258,6 @@ python3 src/generate_picture_cycle.py image_dir --output-number 50  # output50.p
   따라서 더 높은 품질의 프롬프트를 제작하기 위해서 사용하는 배열의 수를 늘리는 방법이 있습니다.
   또한 하나의 테마 프롬프트에서 동일한 스타일의 이미지나 나오기 위해서는 마지막 프롬프트 배열을 ` "in 19th century genre painting style" ` 와 같이 고정된 테마로 지정해야 동일하게 나옵니다.
 
-# 저장소(고유이름 저장 기능을 추가해서 그림 1,2,3,4로 나오도록 해야하고 50개 초과의 그림이 있을 경우 51은 1으로 덮어쓰기)(수정중)
-
-이미지를 하루에 한 번씩 저장해도 2년 넘게 1GB 미만의 공간만 차지합니다.  
-하지만 이미지가 매번 새로 생성되므로 `고유 이름 저장` 기능은 비활성화해도 됩니다.
-
-```python
-# image_dir/uuid.png → 덮어쓰기 방식으로 변경
-fullpath = os.path.join(image_dir, "output.png")
-```
 
 # 이미지파일 백업본 만드는법
 
