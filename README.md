@@ -242,7 +242,7 @@ python3 src/generate_picture_cycle.py image_dir --output-number 25  # output25.p
 python3 src/generate_picture_cycle.py image_dir --output-number 50  # output50.png
 
 ```
-
+-------------
 
 
 ## 프롬프트
