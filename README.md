@@ -205,6 +205,20 @@ python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 �
 * viii. 4~7 반복
 * 이미지 생성 실패 또는 output.png가 없으면 에러메시지 출력
 
+  +) 수정:
+  1. 안정성 향상: 환경변수 대신 명령줄 인수로 번호 전달
+  2. 초기화 로직 개선: 첫 실행 시 이미지가 없으면 먼저 생성
+  3. 에러 핸들링 강화: 각 단계별 상세한 로그 출력
+
+```bash
+image_dir/
+├── output1.png      # 1번째 이미지
+├── output2.png      # 2번째 이미지
+├── ...
+├── output50.png     # 50번째 이미지
+├── output.png       # 최신 이미지 (호환용)
+└── image_counter.json  # 카운터 정보
+```
 
 
 
