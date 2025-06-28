@@ -245,7 +245,7 @@ python3 src/generate_picture_cycle.py image_dir --output-number 50  # output50.p
 -------------
 
 
-## 프롬프트
+## 프롬프트(다른 프롬프트를 사용하고자 했을 때, 구조를 어떻게 짤 것인지 구현해야함.)
 `prompts/` 디렉토리의 `.json` 파일은 다차원 배열 형식의 "프롬프트 조합 조각들"로 구성되어 있습니다.  
 예를 들어 `[[ "sunset", "dawn" ], [ "over mountains", "by the sea" ]]` 와 같이 구성된 경우,  
 각 배열에서 하나씩 무작위로 선택되어 `"sunset over mountains"` 와 같은 프롬프트가 됩니다.
