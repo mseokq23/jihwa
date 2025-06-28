@@ -189,7 +189,7 @@ python3 src/display_picture.py example.jpg --simulate_display
 (전원이 인가되면 자동으로 실행되도록 crontab하고 shellscript 두가지 방식으로 구현하고자 했으나, 개발단계에서는 간단하게 스크립트로 실행하는 것이 낫다고 판단)
 
 ```bash
-python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 실행
+python3 start_image_cycle.py   # 해당 코드는 당연히 jihwa 폴더에서 실행, 이 스크립트로 자동화 실행
 ```
 
 위의 자동실행코드는 무조건 jihwa 폴더에서 실행해야함.
